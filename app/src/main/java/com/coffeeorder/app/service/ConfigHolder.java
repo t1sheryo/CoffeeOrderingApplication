@@ -4,6 +4,9 @@ package com.coffeeorder.app.service;
 
 // тут обработать когда параметров в строке нет
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class ConfigHolder {
     /*@Service
     public class ConfigHolder {

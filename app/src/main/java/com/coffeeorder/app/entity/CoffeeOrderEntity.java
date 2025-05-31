@@ -4,10 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -18,9 +15,16 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor
+@ToString
+@Getter
+@Setter
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "CoffeeOrder")
+@Table(
+        name = "CoffeeOrder",
+        indexes = {
+        @Index(name = "CO_I1", columnList = "id")
+})
 public class CoffeeOrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

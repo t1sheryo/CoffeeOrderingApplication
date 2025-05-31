@@ -4,16 +4,21 @@ package com.coffeeorder.app.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.PositiveOrZero;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Builder
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor
+@ToString
+@Getter
+@Setter
 @Entity
-@Table(name = "CoffeeOrderItem")
+@Table(
+        name = "CoffeeOrderItem",
+        indexes = {
+        @Index(name = "COI_I", columnList = "order_id"),
+        @Index(name = "COI_3", columnList = "type_id")
+})
 public class CoffeeOrderItemEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

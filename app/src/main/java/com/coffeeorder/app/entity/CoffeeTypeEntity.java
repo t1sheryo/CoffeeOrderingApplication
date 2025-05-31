@@ -5,18 +5,22 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 // TODO: реализовать equals() и hashcode()
 
 @Builder
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @NoArgsConstructor
+@ToString
+@Getter
+@Setter
 @Entity
-@Table(name = "CoffeeType")
+@Table(
+        name = "CoffeeType",
+        indexes = {
+        @Index(name = "CT_I", columnList = "id")
+})
 public class CoffeeTypeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
