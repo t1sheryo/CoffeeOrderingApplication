@@ -16,6 +16,8 @@ public interface CoffeeOrderItemMapper {
     @Mapping(source = "coffeeOrderId", target = "coffeeOrder.id")
     CoffeeOrderItemEntity toEntity(CreateCoffeeOrderItemDTO dto);
 
+    @Mapping(target = "price", ignore = true)
+    @Mapping(target = "coffeeTypeName", ignore = true)
     @Mapping(source = "coffeeType.id", target = "coffeeTypeId")
     @Mapping(source = "coffeeOrder.id", target = "coffeeOrderId")
     CreateCoffeeOrderItemDTO toDto(CoffeeOrderItemEntity entity);
