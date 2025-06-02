@@ -1,9 +1,7 @@
 package com.coffeeorder.app.service.impl;
 
-import com.coffeeorder.app.entity.CoffeeOrderItemEntity;
 import com.coffeeorder.app.model.CreateCoffeeOrderItemDTO;
 import com.coffeeorder.app.repository.CoffeeOrderItemRepository;
-import com.coffeeorder.app.service.ConfigHolder;
 import com.coffeeorder.app.service.interfaces.CoffeeOrderItemServiceInterface;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +13,12 @@ import java.util.List;
 @Service
 public class CoffeeOrderItemService implements CoffeeOrderItemServiceInterface {
     private final CoffeeOrderItemRepository coffeeOrderItemRepository;
-    private final ConfigHolder configHolder;
+    private final ConfigService configService;
 
     @Autowired
-    public CoffeeOrderItemService(CoffeeOrderItemRepository coffeeOrderItemRepository, ConfigHolder configHolder) {
+    public CoffeeOrderItemService(CoffeeOrderItemRepository coffeeOrderItemRepository, ConfigService configService) {
         this.coffeeOrderItemRepository = coffeeOrderItemRepository;
-        this.configHolder = configHolder;
+        this.configService = configService;
     }
 
     /**
