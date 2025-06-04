@@ -17,7 +17,7 @@ import java.util.Objects;
 @Setter
 @Entity
 @Table(
-        name = "CoffeeType",
+        name = "coffee_type",
         indexes = {
         @Index(name = "CT_I", columnList = "id")
 })

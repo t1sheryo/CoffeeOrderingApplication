@@ -1,14 +1,12 @@
 package com.coffeeorder.app.mapper;
 
-import com.coffeeorder.app.entity.CoffeeOrderEntity;
 import com.coffeeorder.app.entity.CoffeeOrderItemEntity;
-import com.coffeeorder.app.model.CreateCoffeeOrderDTO;
 import com.coffeeorder.app.model.CreateCoffeeOrderItemDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CoffeeOrderItemMapper {
     CoffeeOrderItemMapper mapper = Mappers.getMapper(CoffeeOrderItemMapper.class);
 

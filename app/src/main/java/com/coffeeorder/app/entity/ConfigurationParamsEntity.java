@@ -13,7 +13,7 @@ import java.util.Objects;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-@Table(name = "Configuration")
+@Table(name = "configuration")
 public class ConfigurationParamsEntity {
     @Id
     private String id;

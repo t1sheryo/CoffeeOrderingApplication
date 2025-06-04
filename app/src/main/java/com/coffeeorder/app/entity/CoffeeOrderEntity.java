@@ -20,7 +20,7 @@ import java.util.Objects;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(
-        name = "CoffeeOrder",
+        name = "coffee_order",
         indexes = {
         @Index(name = "CO_I1", columnList = "id")
 })

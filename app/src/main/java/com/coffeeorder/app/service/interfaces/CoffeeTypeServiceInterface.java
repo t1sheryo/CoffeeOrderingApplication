@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface CoffeeTypeServiceInterface {
     List<ReturnCoffeeTypeDTO> getAllCoffeeTypes();
+    List<ReturnCoffeeTypeDTO> returnRequiredCoffeeTypesDtos(List<Long> coffeeTypesIds);
 }

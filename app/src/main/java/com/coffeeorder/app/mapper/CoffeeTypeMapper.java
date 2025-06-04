@@ -6,7 +6,7 @@ import com.coffeeorder.app.model.ReturnCoffeeTypeDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CoffeeTypeMapper {
     CoffeeTypeMapper INSTANCE = Mappers.getMapper(CoffeeTypeMapper.class);
 

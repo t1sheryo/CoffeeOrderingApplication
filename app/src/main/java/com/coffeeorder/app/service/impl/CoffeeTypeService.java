@@ -29,4 +29,12 @@ public class CoffeeTypeService implements CoffeeTypeServiceInterface {
         log.info("All permissible coffeeTypes: {}", coffeeTypes);
         return coffeeTypes;
     }
+
+    @Override
+    public List<ReturnCoffeeTypeDTO> returnRequiredCoffeeTypesDtos(List<Long> coffeeTypesIds) {
+        List<ReturnCoffeeTypeDTO> dtos = coffeeTypeRepository.findByIdIn(coffeeTypesIds).stream()
+                .map(CoffeeTypeMapper.INSTANCE::toDto)
+                .collect(Collectors.toList());
+        return dtos;
+    }
 }

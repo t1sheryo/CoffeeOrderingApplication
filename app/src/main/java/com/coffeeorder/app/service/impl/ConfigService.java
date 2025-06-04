@@ -3,6 +3,7 @@ package com.coffeeorder.app.service.impl;
 
 import com.coffeeorder.app.entity.ConfigurationParamsEntity;
 import com.coffeeorder.app.repository.ConfigurationRepository;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import java.util.Map;
 @Slf4j
 @Service
 public class ConfigService {
+    private final ConfigurationRepository configurationRepository;
     private final Map<String, Integer> configValues = new HashMap<>();
     private static final int DEFAULT_N_VALUE = 5;
     private static final int DEFAULT_X_VALUE = 10;
@@ -23,6 +25,14 @@ public class ConfigService {
 
     @Autowired
     public ConfigService(ConfigurationRepository configurationRepository) {
+        this.configurationRepository = configurationRepository;
+    }
+
+    // Этот метод будет вызван Spring'ом ПОСЛЕ того, как ConfigService будет создан
+    // и configurationRepository будет готов к использованию.
+    @PostConstruct
+    public void init() {
+        log.info("Инициализация ConfigService: загрузка параметров конфигурации из БД.");
         List<ConfigurationParamsEntity> configs = configurationRepository.findAll();
 
         for(ConfigurationParamsEntity config : configs) {
@@ -30,9 +40,10 @@ public class ConfigService {
                 int value = Integer.parseInt(config.getValue());
                 configValues.put(config.getId(), value);
             } catch (NumberFormatException e) {
-                log.error(e.getMessage());
+                log.error("Ошибка парсинга значения конфигурации для {}: {}", config.getId(), e.getMessage());
             }
         }
+        log.info("ConfigService успешно инициализирован. Загружено {} параметров.", configValues.size());
     }
 
     public int getN() {
