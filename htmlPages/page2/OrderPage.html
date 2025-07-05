@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order</title>
+  <link rel="stylesheet" href="OrderPageStyle.css">
+</head>
+<body>
+  <h1>Детали доставки</h1>
+  <div class="order-container">
+    <form action="/" method="post">
+      <div class="delivery-info">
+        <label for="FIO">ФИО</label>
+        <input type="text" id="FIO" name="customerFIO" th:value="${customerFIO}" required>
+        <br>
+        <label for="address">Адрес</label>
+        <input type="text" id="address" name="customerAddress" th:value="${customerAddress}" required>
+        <button type="submit">Заказать</button>
+      </div>
+    </form>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Название</th>
+        <th>Цена</th>
+        <th>Количество</th>
+        <th>Всего</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="item : ${orderItems}">
+        <td th:text="${item.coffeeTypeName}"></td>
+        <td th:text="${item.price} + ' TGR'"></td>
+        <td th:text="${item.quantity}"></td>
+        <td th:text="${item.price * item.quantity} + ' TGR'"></td>
+      </tr>
+      <tr>
+        <td colspan="3">Всего:</td>
+        <td th:text="${totalCost} + ' TGR'">Итого</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="footer-note">
+    * - Бесплатная доставка от <span th:text="${xValue}"></span> TGR. Иначе <span th:text="${mValue}"></span> TGR.
+  </div>
+  <div class="footer-link">
+    <a th:href="@{}">Перейти на страницу с выбором кофе</a>
+  </div>
+</body>
+</html>
