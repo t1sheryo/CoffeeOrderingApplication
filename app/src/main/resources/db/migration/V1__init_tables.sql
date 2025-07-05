@@ -1,4 +1,4 @@
-CREATE TABLE CoffeeType(
+CREATE TABLE coffee_type(
     id INT NOT NULL,
     type_name VARCHAR(200) NOT NULL,
     price DOUBLE NOT NULL,
@@ -7,11 +7,11 @@ CREATE TABLE CoffeeType(
 ) ENGINE=InnoDB;
 
 -- Лишний индекс?
-CREATE INDEX CT_I on CoffeeType(
+CREATE INDEX CT_I on coffee_type(
     id ASC
 );
 
-CREATE TABLE CoffeeOrder(
+CREATE TABLE coffee_order(
     id INT NOT NULL,
     order_date DATETIME NOT NULL,
     name VARCHAR(100),
@@ -21,11 +21,11 @@ CREATE TABLE CoffeeOrder(
 ) ENGINE=InnoDB;
 
 -- Лишний индекс?
-CREATE INDEX CO_I1 on CoffeeOrder(
+CREATE INDEX CO_I1 on coffee_order(
     id ASC
 );
 
-CREATE TABLE CoffeeOrderItem(
+CREATE TABLE coffee_order_item(
     id INT NOT NULL,
     type_id INT NOT NULL,
     order_id INT NOT NULL,
@@ -33,23 +33,23 @@ CREATE TABLE CoffeeOrderItem(
     PRIMARY KEY(id)
 ) ENGINE=InnoDB;
 
-CREATE INDEX COI_I on CoffeeOrderItem(
+CREATE INDEX COI_I on coffee_order_item(
     order_id ASC
 );
 
-CREATE INDEX COI_3 on CoffeeOrderItem(
+CREATE INDEX COI_3 on coffee_order_item(
     type_id ASC
 );
 
-ALTER TABLE CoffeeOrderItem
+ALTER TABLE coffee_order_item
     ADD CONSTRAINT COI_CO foreign key(order_id)
-        REFERENCES CoffeeOrder(id);
+        REFERENCES coffee_order(id);
 
-ALTER TABLE CoffeeOrderItem
+ALTER TABLE coffee_order_item
     ADD CONSTRAINT COI_CT foreign key(type_id)
-        REFERENCES CoffeeType(id);
+        REFERENCES coffee_type(id);
 
-CREATE TABLE Configuration(
+CREATE TABLE configuration(
     id VARCHAR(20) NOT NULL,
     value VARCHAR(30),
     PRIMARY KEY(id)

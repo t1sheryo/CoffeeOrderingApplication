@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List of available coffee types</title>
+  <link rel="stylesheet" href="CoffeeListPageStyle.css">
+</head>
+<body>
+  <h1>Pick your items and make an order!</h1>
+  <div class="order-container">
+    <form action="/" method="post">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Название</th>
+            <th>Цена</th>
+            <th>Количество</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="coffee : ${coffeeTypes}">
+              <td>
+                <input type="checkbox" name="selectedCoffeeIds" th:value="${coffee.id}">
+              </td>
+              <td th:text="${coffee.name}"></td>
+              <td th:text="${coffee.price} + ' TGR'"></td>
+              <td>
+                <input type="number" th:name="quantity" value="0" min="1" max="2147483647">
+              </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <button type="submit">Заказать</button>
+            </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="footer-note">
+        * - каждая <span th:text="${nValue}"></span> чашка бесплатно.
+    </div>
+    </form>
+  </div>
+</body>
+</html>

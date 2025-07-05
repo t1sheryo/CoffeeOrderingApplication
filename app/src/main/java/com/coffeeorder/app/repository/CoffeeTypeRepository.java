@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface CoffeeTypeRepository extends JpaRepository<CoffeeTypeEntity, Long> {
     @Query("SELECT c FROM CoffeeTypeEntity c WHERE c.disabled IS NULL OR c.disabled <> 'Y'")
-    List<CoffeeTypeEntity> findAvailable();
+    List<CoffeeTypeEntity> findPermissibleCoffeeTypes();
+    List<CoffeeTypeEntity> findByIdIn(List<Long> ids);
 }
